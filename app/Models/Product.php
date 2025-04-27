@@ -23,4 +23,16 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+     // Relasi ke gambar produk
+     public function images()
+     {
+         return $this->hasMany(ProductImage::class);
+     }
+ 
+     // Ambil gambar utama produk
+     public function mainImage()
+     {
+         return $this->images()->where('is_main', true)->first();
+     }
 }

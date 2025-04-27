@@ -20,7 +20,7 @@ return new class extends Migration
                 ->onDelete('cascade'); // <- cascading delete
             $table->string('name');
             $table->text('description');
-            $table->decimal('price', 10, 2);
+            $table->integer('price');
             $table->integer('stock');
             $table->string('image');
             $table->decimal('average_rating', 2, 1)->default(0);

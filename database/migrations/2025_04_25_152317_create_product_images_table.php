@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role',['user','admin'])->default('user');
-            $table->string('photo')->nullable();
-            $table->rememberToken();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Relasi ke produk
+        $table->string('image'); // Nama file gambar
+        $table->boolean('is_main')->default(false); // Menandakan gambar utama
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('product_images');
     }
 };
